@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Visual field guides to drug-discovery AI and machine-learned interatomic potentials.">
+  <title>Computational Discovery Field Guide</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2306141b'/%3E%3Ccircle cx='21' cy='32' r='8' fill='%2357e6cf'/%3E%3Ccircle cx='45' cy='20' r='6' fill='%23b99aff'/%3E%3Ccircle cx='45' cy='45' r='7' fill='%23ffbd66'/%3E%3Cpath d='M27 29 39 23M27 36l12 6' stroke='%23edf6f5' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the model landscape</a>
+  <header id="top" class="hero">
+    <p class="eyebrow">A field guide to computational drug discovery</p>
+    <h1>Drug discovery does not use one AI model. It uses a stack.</h1>
+    <p>Follow one therapeutic idea from genomic context to experimental evidence.</p>
+    <p class="scroll-cue"><a href="#pipeline">Trace the journey: DNA → protein → structure → candidate → assay</a></p>
+  </header>
+
+  <nav class="experience-switcher" aria-label="Choose an explainer">
+    <div class="experience-tabs" role="tablist" aria-label="Computational discovery field guides">
+      <a id="tab-drug" role="tab" aria-selected="true" aria-controls="drug-discovery" href="#drug-discovery">Drug discovery stack</a>
+      <a id="tab-mlip" role="tab" aria-selected="false" aria-controls="interatomic-potentials" href="#interatomic-potentials" tabindex="-1">ML interatomic potentials</a>
+    </div>
+  </nav>
+
+  <main id="main">
+    <div id="drug-discovery" role="tabpanel" aria-labelledby="tab-drug">
+    <section id="pipeline" aria-labelledby="pipeline-title" data-reveal>
+      <p class="section-kicker">01 / A molecular journey</p>
+      <h2 id="pipeline-title">One pipeline. Different jobs.</h2>
+      <p>A therapeutic hypothesis changes scientific scale as it moves through discovery. These tools are complementary: a genome model is not a structure predictor, and a structure predictor is not a potency assay.</p>
+      <ol class="pipeline-steps" aria-label="Drug-discovery workflow">
+        <li data-stage="genome"><strong>01 · Genomic context</strong><span>Evo 2 reads long DNA sequence context to help prioritize variants, regulatory patterns, and hypotheses.</span></li>
+        <li data-stage="sequence"><strong>02 · Protein sequence</strong><span>ESM-family models turn amino-acid sequences into learned representations for function and property tasks.</span></li>
+        <li data-stage="structure"><strong>03 · Structure and interaction</strong><span>AlphaFold-family models propose a folded structure or biomolecular complex to inspect, not an experimental result.</span></li>
+        <li data-stage="simulation"><strong>04 · Physics and ranking</strong><span>Schrödinger software uses docking, molecular dynamics, and free-energy methods to rank molecular ideas.</span></li>
+        <li data-stage="design"><strong>05 · Closed-loop design</strong><span>Genesis GEMS combines proprietary generative and predictive models to propose and optimize compounds for selected targets.</span></li>
+        <li data-stage="wet-lab"><strong>06 · Wet-lab validation</strong><span>Assays, structural experiments, and medicinal chemistry decide which hypotheses survive.</span></li>
+      </ol>
+    </section>
+
+    <section id="models" aria-labelledby="models-title" data-reveal>
+      <p class="section-kicker">02 / Five instruments</p>
+      <h2 id="models-title">Five names, five different instruments.</h2>
+      <p>Choose a name to orient the comparison. Every detail remains below as a static fallback, because one selected card should never hide the rest of the scientific context.</p>
+      <div class="model-tabs" role="tablist" aria-label="Drug-discovery technologies">
+        <button id="model-alphafold" type="button" role="tab" aria-selected="true" aria-controls="panel-alphafold" data-model="alphafold">AlphaFold</button>
+        <button id="model-esm" type="button" role="tab" aria-selected="false" aria-controls="panel-esm" data-model="esm" tabindex="-1">ESM</button>
+        <button id="model-evo2" type="button" role="tab" aria-selected="false" aria-controls="panel-evo2" data-model="evo2" tabindex="-1">Evo 2</button>
+        <button id="model-schrodinger" type="button" role="tab" aria-selected="false" aria-controls="panel-schrodinger" data-model="schrodinger" tabindex="-1">Schrödinger</button>
+        <button id="model-genesis" type="button" role="tab" aria-selected="false" aria-controls="panel-genesis" data-model="genesis" tabindex="-1">Genesis</button>
+      </div>
+
+      <div class="model-details">
+        <article id="panel-alphafold" role="tabpanel" aria-labelledby="model-alphafold" data-model-panel="alphafold">
+          <h3>AlphaFold family</h3>
+          <dl><dt>Technology type</dt><dd>Protein and biomolecular structure prediction.</dd><dt>Input → output</dt><dd>Sequence and related biological context → a predicted three-dimensional structure with confidence information.</dd><dt>Best commercial role</dt><dd>Making a structural hypothesis available early enough to guide target assessment, construct design, and follow-up modeling.</dd><dt>Maturity</dt><dd>Widely used structural starting point; complex and ligand-bound predictions require case-by-case validation.</dd><dt>Important limitation</dt><dd>A predicted static structure does not directly establish affinity, potency, dynamics, ADME, toxicity, synthetic accessibility, or clinical efficacy.</dd></dl>
+        </article>
+        <article id="panel-esm" role="tabpanel" aria-labelledby="model-esm" data-model-panel="esm">
+          <h3>ESM family</h3>
+          <dl><dt>Technology type</dt><dd>Protein language models.</dd><dt>Input → output</dt><dd>Amino-acid sequence → embeddings, likelihoods, or task-specific protein predictions.</dd><dt>Best commercial role</dt><dd>Feature generation for protein engineering, functional annotation, mutation prioritization, and downstream predictors.</dd><dt>Maturity</dt><dd>A flexible model family whose utility depends on the task, labels, and evaluation set.</dd><dt>Important limitation</dt><dd>Sequence representations do not substitute for experimental functional measurement and may not transfer to an unseen protein family or assay.</dd></dl>
+        </article>
+        <article id="panel-evo2" role="tabpanel" aria-labelledby="model-evo2" data-model-panel="evo2">
+          <h3>Evo 2</h3>
+          <dl><dt>Technology type</dt><dd>Long-context genomic foundation model.</dd><dt>Input → output</dt><dd>DNA or RNA sequence context → learned representations, sequence likelihoods, and generative proposals.</dd><dt>Best commercial role</dt><dd>Connecting genomic variation and regulatory context to target hypotheses before a protein-centric campaign begins.</dd><dt>Maturity</dt><dd>Research and platform evaluation stage for many drug-discovery workflows.</dd><dt>Important limitation</dt><dd>Genomic plausibility is not causal proof of disease mechanism or therapeutic tractability.</dd></dl>
+        </article>
+        <article id="panel-schrodinger" role="tabpanel" aria-labelledby="model-schrodinger" data-model-panel="schrodinger">
+          <h3>Schrödinger</h3>
+          <dl><dt>Technology type</dt><dd>Physics-based molecular modeling and drug-discovery software.</dd><dt>Input → output</dt><dd>Prepared structures and molecules → docking poses, molecular-dynamics trajectories, free-energy estimates, and ranked design hypotheses.</dd><dt>Best commercial role</dt><dd>Structure-based design decisions where physical simulation and carefully prepared inputs matter.</dd><dt>Maturity</dt><dd>Established commercial scientific software, licensed across major pharmaceutical companies.</dd><dt>Important limitation</dt><dd>Results depend on model preparation, sampling, force fields, protocol choices, and experimental feedback; they are not direct biological proof.</dd></dl>
+        </article>
+        <article id="panel-genesis" role="tabpanel" aria-labelledby="model-genesis" data-model-panel="genesis">
+          <h3>Genesis GEMS</h3>
+          <dl><dt>Technology type</dt><dd>Proprietary generative and predictive AI platform for small-molecule discovery.</dd><dt>Input → output</dt><dd>Target and campaign data → prioritized chemical designs and optimization hypotheses.</dd><dt>Best commercial role</dt><dd>Closed-loop design campaigns that combine proprietary models with medicinal chemistry and experimental data.</dd><dt>Maturity</dt><dd>Partnered platform; public detail is limited relative to open research models.</dd><dt>Important limitation</dt><dd>External users cannot independently inspect the full platform, and generated molecules still require synthesis and wet-lab confirmation.</dd></dl>
+        </article>
+      </div>
+    </section>
+
+    <section id="adoption" aria-labelledby="adoption-title" data-reveal>
+      <p class="section-kicker">03 / Evidence labels, not market share</p>
+      <h2 id="adoption-title">What the percentages can—and cannot—say.</h2>
+      <p>These figures describe different populations and questions. They overlap, so they are evidence markers—not slices of a pie and not a census of model invocation share.</p>
+      <div class="evidence-group">
+        <h3>Published, verified, and publicly announced signals</h3>
+        <div class="evidence-row" data-value="71" aria-label="71 percent, Published: protein structure and property model adoption among surveyed AI-active organizations">
+          <p><strong>71%</strong> <span class="evidence-label">Published</span></p><p>Protein structure and property models adopted by AI-active biotech and biopharma organizations in Benchling’s November 2025 survey.</p><p class="caveat">Sample caveat: approximately 100 organizations already using AI in R&amp;D; not all pharma and biotech.</p>
+        </div>
+        <div class="evidence-row" data-value="36" aria-label="34 to 38 percent, Published: early AlphaFold significant-impact poll">
+          <p><strong>34–38%</strong> <span class="evidence-label">Published</span></p><p>Scientists in two early drug-discovery community polls who said AlphaFold models had already helped significantly in a project.</p><p class="caveat">Sample caveat: 240 self-selected respondents, mainly pharma and biotech scientists; this is an early sentiment poll, not a market survey.</p>
+        </div>
+        <div class="evidence-row" data-value="100" aria-label="100 percent, Verified: top 20 pharmaceutical companies licensed Schrödinger solutions">
+          <p><strong>100%</strong> <span class="evidence-label">Verified</span></p><p>Top-20 pharma companies by 2024 revenue that licensed Schrödinger solutions in the company’s 2025 filing.</p><p class="caveat">Sample caveat: licensing is not equivalent to use of every product, every workflow, or every project.</p>
+        </div>
+        <div class="evidence-row" data-value="15" aria-label="15 percent, Public partnership: top 20 pharma companies with publicly announced Isomorphic Labs partnerships">
+          <p><strong>15%</strong> <span class="evidence-label">Public partnership</span></p><p>Publicly announced Isomorphic Labs partnerships among the top-20 pharma cohort, using the disclosed Lilly, Novartis, and Johnson &amp; Johnson collaborations as a count.</p><p class="caveat">Sample caveat: public announcements undercount undisclosed work and do not measure platform use inside partner organizations.</p>
+        </div>
+        <div class="evidence-row" data-value="5" aria-label="5 percent, Public partnership: top 20 pharma companies with a publicly announced Genesis partnership">
+          <p><strong>5%</strong> <span class="evidence-label">Public partnership</span></p><p>Publicly announced Genesis partnership among the top-20 pharma cohort, using Gilead as the disclosed example.</p><p class="caveat">Sample caveat: a public partnership is a narrow disclosure measure, not an adoption rate.</p>
+        </div>
+      </div>
+      <div class="evidence-group directional-estimates">
+        <h3>Directional estimates: where the public record is thin</h3>
+        <p><span class="evidence-label">Analyst range · Directional estimate</span> No authoritative model-market-share census exists for these tools. These deliberately broad, overlapping organization-level ranges synthesize the published category survey, early practitioner poll, release timing, public evaluations, and disclosed partnerships above. They are hypotheses to size—not measured invocation share.</p>
+        <div class="evidence-row" data-value="55" aria-label="40 to 70 percent analyst range for AlphaFold-derived workflow use among AI-active discovery organizations"><p><strong>40–70%</strong> <span class="evidence-label">Analyst range · Directional estimate</span></p><p>AlphaFold-derived structure workflows among AI-active drug-discovery organizations.</p><p class="caveat">Anchored below the broader 71% structure/property-model category; target class and validation practice vary.</p></div>
+        <div class="evidence-row" data-value="18" aria-label="10 to 30 percent analyst range for ESM-family evaluation among AI-active discovery organizations"><p><strong>10–30%</strong> <span class="evidence-label">Analyst range · Directional estimate</span></p><p>ESM-family evaluation or use for protein representation, engineering, or task-specific prediction.</p><p class="caveat">Open research visibility is substantial, but organization-level production use is not surveyed.</p></div>
+        <div class="evidence-row" data-value="3" aria-label="1 to 5 percent analyst range for Evo 2 evaluation among AI-active discovery organizations"><p><strong>1–5%</strong> <span class="evidence-label">Analyst range · Directional estimate</span></p><p>Evo 2 evaluation in genomic and regulatory hypothesis workflows.</p><p class="caveat">A newly released research platform should be treated as early evaluation, not established adoption.</p></div>
+        <div class="evidence-row" data-value="18" aria-label="10 to 25 percent analyst range for newer foundation-model workflows in relevant biotech organizations"><p><strong>10–25%</strong> <span class="evidence-label">Analyst range · Directional estimate</span></p><p>Relevant biotech organizations exploring at least one newer sequence, structure, or generative foundation-model workflow.</p><p class="caveat">Broad category estimate; tools overlap and a single organization may appear in several rows.</p></div>
+      </div>
+    </section>
+
+    <section id="alphafold" aria-labelledby="alphafold-title" data-reveal>
+      <p class="section-kicker">04 / The structural prior</p>
+      <h2 id="alphafold-title">Where AlphaFold earns its keep.</h2>
+      <p>AlphaFold is most useful when a structural hypothesis removes a bottleneck. Confidence, constructability, ligand state, and orthogonal experimental evidence determine whether a particular prediction is fit for a decision.</p>
+      <div class="maturity-map">
+        <article><h3>Established or mature starting points</h3><ul><li>Target identification and family comparison</li><li>Target validation and druggability conversations</li><li>Experimental structure work, including construct design and cryo-EM or crystallography interpretation</li><li>Early hit discovery when no experimental structure is available</li></ul></article>
+        <article><h3>Emerging or experimental uses</h3><ul><li>Complex prediction and interface hypotheses</li><li>Lead optimization against ligand-bound conformations</li><li>Biologics design and antibody–antigen complexes</li><li>Off-target risk hypotheses</li></ul></article>
+      </div>
+      <aside class="reality-check" aria-labelledby="reality-title">
+        <h3 id="reality-title">Reality check: prediction is not the whole experiment</h3>
+        <p>AlphaFold does not directly provide reliable potency, conformational dynamics, ADME, toxicity, synthetic accessibility, clinical efficacy, or experimental proof. Its output is a model to inspect and test.</p>
+        <p><span class="evidence-label">Published</span> In a 28-target virtual-screening benchmark, unrefined AlphaFold2 structures had average early enrichment (EF 1%) of 13.16, refined AlphaFold2 structures 19.25, and ligand-bound experimental structures 24.81. The contrast illustrates why binding-site state, refinement, and experimental structures still matter.</p>
+        <p><span class="evidence-label">Published</span> A prospective TAAR1 screen is a complementary success case: more than 16 million compounds were docked, the AlphaFold-enabled screen reported a 60% hit rate, and it identified potent agonists. A result like this is a reason to test a workflow, not a guarantee that every target will behave similarly.</p>
+      </aside>
+    </section>
+
+    <section id="stack" aria-labelledby="stack-title" data-reveal>
+      <p class="section-kicker">05 / The closed loop</p>
+      <h2 id="stack-title">The working stack closes in the wet lab.</h2>
+      <ol class="stack-loop">
+        <li>Predicted structure frames a target hypothesis.</li>
+        <li>Protein-language-model features add sequence-level context.</li>
+        <li>Docking proposes poses and chemical starting points.</li>
+        <li>Molecular dynamics and free-energy calculations probe and rank designs.</li>
+        <li>Proprietary QSAR and generative chemistry prioritize the next compounds.</li>
+        <li>ADME and toxicity predictors filter risk early.</li>
+        <li>Wet-lab synthesis, assays, and structural work measure what happened.</li>
+        <li>Experimental feedback updates the next design cycle.</li>
+      </ol>
+      <p><strong>The final arbiter is experimental feedback.</strong> A stack is valuable when it improves the next decision and learns from the result, not when it replaces the result.</p>
+    </section>
+
+    <section id="sources" aria-labelledby="sources-title" data-reveal>
+      <p class="section-kicker">06 / Evidence and licensing</p>
+      <h2 id="sources-title">Evidence, licensing, and methodology.</h2>
+      <p>The page favors primary studies, official terms, filings, surveys, and company disclosures. No authoritative census establishes market share for individual scientific models; directional estimates are explicitly not measured invocation share.</p>
+      <ul class="source-list">
+        <li><a href="https://www.benchling.com/biotech-ai-report-2026">Benchling, 2026 Biotech AI Report</a> — surveyed AI-active R&amp;D organizations and its 71% protein-structure/property-model figure.</li>
+        <li><a href="https://www.sec.gov/Archives/edgar/data/1490978/000149097826000010/sdgr-20251231.htm">Schrödinger 2025 Form 10-K</a> — the top-20 pharma licensing disclosure.</li>
+        <li><a href="https://github.com/google-deepmind/alphafold/blob/main/LICENSE">AlphaFold / AlphaFold2 code license</a> — Apache 2.0 code terms; model-parameter and data terms should be checked separately.</li>
+        <li><a href="https://github.com/google-deepmind/alphafold3/blob/main/WEIGHTS_TERMS_OF_USE.md">AlphaFold 3 weights terms of use</a> — source and parameter restrictions differ from AlphaFold2.</li>
+        <li><a href="https://alphafold.ebi.ac.uk/assets/License-Disclaimer.pdf">AlphaFold Protein Structure Database license and disclaimer</a> — CC BY 4.0 database data and related conditions.</li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/39110804/">TAAR1 prospective AlphaFold-enabled screen</a> — experimental hit-discovery study.</li>
+        <li><a href="https://github.com/BEAM-Labs/FoldBench">FoldBench</a> and <a href="https://doi.org/10.1038/s41467-025-67127-3">its peer-reviewed report</a> — low-homology, all-atom biomolecular structure-prediction evaluation.</li>
+        <li><a href="https://doi.org/10.1021/acs.jcim.2c01219">Refined versus unrefined AlphaFold2 hit-discovery benchmark</a> — peer-reviewed comparison with ligand-bound experimental structures.</li>
+        <li><a href="https://arcinstitute.org/news/evo-2-one-year-later">Arc Institute, Evo 2: One Year Later</a> — open genomic-model update and use context.</li>
+        <li><a href="https://www.isomorphiclabs.com/partnerships">Isomorphic Labs partnerships</a> and <a href="https://www.isomorphiclabs.com/articles/isomorphic-labs-kicks-off-2024-with-two-pharmaceutical-collaborations">initial Lilly and Novartis announcement</a> — publicly disclosed collaboration evidence.</li>
+        <li><a href="https://www.gilead.com/news/news-details/2024/gilead-and-genesis-therapeutics-announce-strategic-collaboration-to-discover-and-develop-novel-therapies">Gilead and Genesis Therapeutics collaboration</a> — public GEMS partnership disclosure.</li>
+        <li><a href="https://3decision.discngine.com/blog/2023/03/13/the-impact-of-alphafold-in-drug-discovery-and-emerging-ml-methods">Discngine AlphaFold impact polls</a> — the 34% and 38% early, self-selected community results.</li>
+      </ul>
+    </section>
+    </div>
+
+    <div id="interatomic-potentials" role="tabpanel" aria-labelledby="tab-mlip">
+      <section id="md-intro" class="mlip-hero" aria-labelledby="md-intro-title" data-reveal>
+        <p class="section-kicker">01 / Atoms in motion</p>
+        <h2 id="md-intro-title">Every molecular trajectory depends on an energy model.</h2>
+        <p>Molecular dynamics (MD) follows atom-by-atom motion through time. Unlike continuum methods, which represent a material as smooth fields, MD resolves individual atoms and uses an interatomic potential to turn each configuration into energy and forces.</p>
+        <div class="atom-stage" aria-label="Illustrative atom motion">
+          <canvas id="atom-canvas" width="960" height="420" aria-describedby="animation-note"></canvas>
+          <div class="stage-hud"><span id="demo-caption">Gold nanowire · tensile strain</span><button id="animation-toggle" type="button" aria-pressed="false">Pause motion</button></div>
+        </div>
+        <p id="animation-note" class="caveat">This animation is an <strong>explanatory abstraction</strong>, not a numerical MD simulation or quantitative prediction.</p>
+        <p class="source-note">Fundamentals reference: the official <a href="https://docs.lammps.org/Intro.html">LAMMPS introduction to molecular dynamics</a> describes atomistic trajectories, interactions, and time integration.</p>
+      </section>
+
+      <section id="md-applications" aria-labelledby="md-applications-title" data-reveal>
+        <p class="section-kicker">02 / Five windows into MD</p>
+        <h2 id="md-applications-title">Different systems, the same energy → force → motion loop.</h2>
+        <div class="demo-selector" role="tablist" aria-label="Molecular dynamics examples">
+          <button id="demo-nanowire" type="button" role="tab" aria-selected="true" aria-controls="demo-panel-nanowire" data-md-demo="nanowire">Nanowire</button>
+          <button id="demo-brazing" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-brazing" data-md-demo="brazing" tabindex="-1">Brazing</button>
+          <button id="demo-impact" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-impact" data-md-demo="impact" tabindex="-1">Impact</button>
+          <button id="demo-assembly" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-assembly" data-md-demo="assembly" tabindex="-1">Assembly</button>
+          <button id="demo-catalysis" type="button" role="tab" aria-selected="false" aria-controls="demo-panel-catalysis" data-md-demo="catalysis" tabindex="-1">Catalysis</button>
+        </div>
+        <div class="demo-details">
+          <article id="demo-panel-nanowire" role="tabpanel" aria-labelledby="demo-nanowire" data-md-panel="nanowire"><h3>Gold nanowire stretching</h3><p>Pulling the ends apart reorganizes the atomic lattice, narrows it to a tiny bridge, and eventually causes fracture. MD reveals the local rearrangements hidden by a continuum stress curve.</p></article>
+          <article id="demo-panel-brazing" role="tabpanel" aria-labelledby="demo-brazing" data-md-panel="brazing"><h3>Copper–nickel brazing</h3><p>Temperature accelerates diffusion across the interface. Trajectories let researchers estimate mixing rates and inspect how the initially sharp boundary becomes an interdiffusion zone.</p></article>
+          <article id="demo-panel-impact" role="tabpanel" aria-labelledby="demo-impact" data-md-panel="impact"><h3>Micrometeorite impact</h3><p>A fast projectile transfers energy into a mineral, breaking bonds and ejecting atoms. Reactive models can examine dehydroxylation and other space-weathering chemistry.</p></article>
+          <article id="demo-panel-assembly" role="tabpanel" aria-labelledby="demo-assembly" data-md-panel="assembly"><h3>Peptide self-assembly</h3><p>Thermal motion explores many molecular arrangements; favorable contacts stabilize larger structures. The result connects local interactions to emergent morphology.</p></article>
+          <article id="demo-panel-catalysis" role="tabpanel" aria-labelledby="demo-catalysis" data-md-panel="catalysis"><h3>Nitrogen on iron</h3><p>An electronic-structure-aware trajectory can show N₂ approaching iron, accepting charge, crossing a transition region, and dissociating into adsorbed nitrogen atoms.</p></article>
+        </div>
+      </section>
+
+      <section id="energy-force" aria-labelledby="energy-force-title" data-reveal>
+        <p class="section-kicker">03 / The engine underneath</p>
+        <h2 id="energy-force-title">Energy shapes the landscape. Its slope supplies the force.</h2>
+        <div class="equation-card"><span>configuration</span><strong>E(R)</strong><span>differentiate</span><strong>F = −∇E</strong><span>integrate</span><strong>R(t)</strong></div>
+        <p>Stable arrangements sit near low-energy valleys. When an atom moves onto a slope, the negative energy gradient points it back downhill. An integrator repeatedly updates positions and velocities from those forces.</p>
+        <div class="potential-lab">
+          <div class="potential-plot" aria-label="Illustrative Lennard-Jones energy curve">
+            <svg viewBox="0 0 640 300" role="img" aria-labelledby="potential-plot-title">
+              <title id="potential-plot-title">Energy versus distance with movable marker</title>
+              <path class="plot-grid" d="M50 30V255H610M50 180H610" />
+              <path class="energy-curve" d="M92 35 C116 45 118 138 146 198 C178 267 250 218 315 190 C410 151 515 168 600 177" />
+              <g id="potential-marker"><line x1="240" y1="55" x2="240" y2="255"/><circle cx="240" cy="215" r="8"/></g>
+              <text x="54" y="24">energy</text><text x="525" y="283">distance r</text>
+            </svg>
+          </div>
+          <div class="lab-controls">
+            <label for="distance-control">Interatomic distance <output id="distance-value">1.20 σ</output></label>
+            <input id="distance-control" type="range" min="0.88" max="2.20" step="0.01" value="1.20">
+            <dl class="live-readouts"><div><dt>Energy</dt><dd id="energy-value">−0.89 ε</dd></div><div><dt>Force</dt><dd id="force-value">−2.21 ε/σ</dd></div><div><dt>Direction</dt><dd id="force-direction">Attractive</dd></div></dl>
+            <p class="caveat">Dimensionless Lennard–Jones teaching quantities; not fitted to a particular material.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="scale-hierarchy" aria-labelledby="scale-title" data-reveal>
+        <p class="section-kicker">04 / The grand challenge</p>
+        <h2 id="scale-title">Accuracy, cost, length, and time pull in different directions.</h2>
+        <div class="scale-map" aria-label="Simulation method tradeoffs">
+          <article><span class="scale-index">Electronic</span><h3>DFT</h3><p><strong>Fidelity:</strong> electronic-structure reference</p><p><strong>Cost:</strong> very high</p><p><strong>Length:</strong> Å to nm</p><p><strong>Time:</strong> fs to ps</p></article>
+          <article><span class="scale-index">Atomistic</span><h3>Classical MD</h3><p><strong>Fidelity:</strong> depends on potential</p><p><strong>Cost:</strong> low</p><p><strong>Length:</strong> nm to μm</p><p><strong>Time:</strong> ps to μs+</p></article>
+          <article><span class="scale-index">Learned bridge</span><h3>ML interatomic potentials</h3><p><strong>Fidelity:</strong> aims toward DFT in-distribution</p><p><strong>Cost:</strong> between DFT and classical</p><p><strong>Length:</strong> larger atomistic systems</p><p><strong>Time:</strong> longer trajectories</p></article>
+          <article><span class="scale-index">Macroscopic</span><h3>Continuum</h3><p><strong>Fidelity:</strong> field-level constitutive laws</p><p><strong>Cost:</strong> scalable</p><p><strong>Length:</strong> μm to meters</p><p><strong>Time:</strong> engineering scales</p></article>
+        </div>
+        <p class="grand-challenge">The ambition: approach DFT accuracy at classical-MD cost, while knowing when the model has left its training domain.</p>
+      </section>
+
+      <section id="potential-evolution" aria-labelledby="potential-title" data-reveal>
+        <p class="section-kicker">05 / A century of representations</p>
+        <h2 id="potential-title">From a distance curve to geometric message passing.</h2>
+        <div class="architecture-viewer">
+          <div class="architecture-tabs" role="tablist" aria-label="Interatomic potential methods">
+            <button id="potential-lj" type="button" role="tab" aria-selected="true" aria-controls="architecture-lj" data-potential-model="lj">Lennard–Jones</button>
+            <button id="potential-morse" type="button" role="tab" aria-selected="false" aria-controls="architecture-morse" data-potential-model="morse" tabindex="-1">Morse</button>
+            <button id="potential-sw" type="button" role="tab" aria-selected="false" aria-controls="architecture-sw" data-potential-model="sw" tabindex="-1">Stillinger–Weber</button>
+            <button id="potential-eam" type="button" role="tab" aria-selected="false" aria-controls="architecture-eam" data-potential-model="eam" tabindex="-1">Embedded Atom Method</button>
+            <button id="potential-bp" type="button" role="tab" aria-selected="false" aria-controls="architecture-bp" data-potential-model="bp" tabindex="-1">Behler–Parrinello</button>
+            <button id="potential-gap" type="button" role="tab" aria-selected="false" aria-controls="architecture-gap" data-potential-model="gap" tabindex="-1">Gaussian Approximation Potentials</button>
+            <button id="potential-cgcnn" type="button" role="tab" aria-selected="false" aria-controls="architecture-cgcnn" data-potential-model="cgcnn" tabindex="-1">CGCNN</button>
+            <button id="potential-nequip" type="button" role="tab" aria-selected="false" aria-controls="architecture-nequip" data-potential-model="nequip" tabindex="-1">NequIP</button>
+            <button id="potential-m3gnet" type="button" role="tab" aria-selected="false" aria-controls="architecture-m3gnet" data-potential-model="m3gnet" tabindex="-1">M3GNet</button>
+          </div>
+          <div class="architecture-stage" aria-hidden="true"><span class="arch-atom a">A</span><span class="arch-edge"></span><span class="arch-atom b">B</span><span id="arch-neighbor" class="arch-neighbor">pair distance r</span><span id="arch-network" class="arch-network">analytic curve</span><span id="arch-output" class="arch-output">pair energy</span></div>
+          <dl class="architecture-indicators" aria-label="Selected method characteristics">
+            <div><dt>Locality</dt><dd data-indicator="locality">Pair cutoff</dd></div>
+            <div><dt>Directionality</dt><dd data-indicator="directionality">Distance only</dd></div>
+            <div><dt>Universality</dt><dd data-indicator="universality">Narrow</dd></div>
+          </dl>
+          <div class="architecture-articles">
+            <article id="architecture-lj" role="tabpanel" aria-labelledby="potential-lj" data-potential-panel="lj" data-locality="Pair cutoff" data-directionality="Distance only" data-universality="Narrow" data-pipeline="pair distance|analytic curve|pair energy"><p class="era">1900s · pair potential</p><h3>Lennard–Jones</h3><p>Two parameters describe short-range repulsion and longer-range attraction as a function of pair distance. Fast and useful for simple dispersion-dominated systems, but too restrictive for realistic bonding.</p></article>
+            <article id="architecture-morse" role="tabpanel" aria-labelledby="potential-morse" data-potential-panel="morse" data-locality="Pair cutoff" data-directionality="Distance only" data-universality="Narrow" data-pipeline="bond distance|three-parameter well|pair energy"><p class="era">1929 · flexible bond curve</p><h3>Morse</h3><p>An extra shape parameter improves bond stretching and compressibility relative to a simple pair curve. More flexible still does not mean many-body: coordination and angular chemistry remain missing.</p></article>
+            <article id="architecture-sw" role="tabpanel" aria-labelledby="potential-sw" data-potential-panel="sw" data-locality="2 + 3 body" data-directionality="Explicit angles" data-universality="Silicon-specific" data-pipeline="pairs + triplets|angular term|total energy"><p class="era">1985 · explicit angles</p><h3>Stillinger–Weber</h3><p>A two-body term plus a three-body angular term favors tetrahedral silicon geometry. It shows how a third atom changes an interaction. <a href="https://doi.org/10.1103/PhysRevB.31.5262">10.1103/PhysRevB.31.5262</a></p></article>
+            <article id="architecture-eam" role="tabpanel" aria-labelledby="potential-eam" data-potential-panel="eam" data-locality="Neighbor density" data-directionality="Isotropic many-body" data-universality="Metals" data-pipeline="neighbor densities|embedding function|atomic energy"><p class="era">1984 · local density</p><h3>Embedded Atom Method</h3><p>Neighbor contributions accumulate into a local electron-density proxy; a nonlinear embedding function converts that environment into energy. It captures metallic coordination effects. <a href="https://doi.org/10.1103/PhysRevB.29.6443">10.1103/PhysRevB.29.6443</a></p></article>
+            <article id="architecture-bp" role="tabpanel" aria-labelledby="potential-bp" data-potential-panel="bp" data-locality="Local cutoff" data-directionality="Invariant radial + angular" data-universality="Usually bespoke" data-pipeline="symmetry functions|per-atom neural net|ΣEᵢ → forces"><p class="era">2007 · neural energy</p><h3>Behler–Parrinello</h3><p>Rotation-invariant radial and angular symmetry functions feed per-atom neural networks; atomic energies sum to the total and autodiff supplies forces. It learns the functional form from DFT data. <a href="https://doi.org/10.1103/PhysRevLett.98.146401">10.1103/PhysRevLett.98.146401</a></p></article>
+            <article id="architecture-gap" role="tabpanel" aria-labelledby="potential-gap" data-potential-panel="gap" data-locality="Local cutoff" data-directionality="Invariant SOAP" data-universality="Bespoke + uncertainty" data-pipeline="neighbor density|kernel similarity|energy ± uncertainty"><p class="era">2010 · similarity and uncertainty</p><h3>Gaussian Approximation Potentials</h3><p>Invariant neighborhood descriptors such as bispectrum or SOAP support kernel regression over atomic environments, naturally exposing similarity-based uncertainty. Local cutoffs still limit long-range physics. <a href="https://doi.org/10.1103/PhysRevLett.104.136403">10.1103/PhysRevLett.104.136403</a></p></article>
+            <article id="architecture-cgcnn" role="tabpanel" aria-labelledby="potential-cgcnn" data-potential-panel="cgcnn" data-locality="Graph hops" data-directionality="Scalar messages" data-universality="Property predictor" data-pipeline="crystal graph|message passing|material property"><p class="era">2018 · message passing</p><h3>CGCNN</h3><p>Atoms become nodes and periodic neighbor relations become edges; repeated convolution updates learned crystal representations. CGCNN marks the graph transition but is <strong>not itself a force-field formulation</strong>. <a href="https://doi.org/10.1103/PhysRevLett.120.145301">10.1103/PhysRevLett.120.145301</a></p></article>
+            <article id="architecture-nequip" role="tabpanel" aria-labelledby="potential-nequip" data-potential-panel="nequip" data-locality="Local graph" data-directionality="E(3)-equivariant" data-universality="Dataset-bound" data-pipeline="typed geometry|tensor messages|invariant E → equivariant F"><p class="era">2022 · equivariant geometry</p><h3>NequIP</h3><p>Scalar, vector, and higher-order features transform predictably under rotation. Equivariance improves force learning and data efficiency, though tensor products add cost. <a href="https://doi.org/10.1038/s41467-022-29939-5">10.1038/s41467-022-29939-5</a></p></article>
+            <article id="architecture-m3gnet" role="tabpanel" aria-labelledby="potential-m3gnet" data-potential-panel="m3gnet" data-locality="Graph + 3 body" data-directionality="Angles + lattice" data-universality="Broad materials" data-pipeline="atoms + bonds + lattice|stateful graph network|E + F + stress"><p class="era">2022 · universal materials potential</p><h3>M3GNet</h3><p>Three-body graph interactions, lattice information, and learned state variables support energies, forces, and stresses across diverse materials. Broad coverage helps out of the box; distance from training data still matters. <a href="https://doi.org/10.1016/j.mtphys.2022.100712">10.1016/j.mtphys.2022.100712</a></p></article>
+          </div>
+        </div>
+        <p class="caveat">For energy-conserving MD, an MLIP normally learns a differentiable invariant energy so forces obtained from its gradient transform equivariantly.</p>
+      </section>
+
+      <section id="many-body-lab" class="many-body-lab" aria-labelledby="many-body-title" data-reveal>
+        <p class="section-kicker">06 / Why pairs plateau</p>
+        <h2 id="many-body-title">Move a third atom. The pair distance stays fixed—but the environment changes.</h2>
+        <div class="many-body-scene" aria-hidden="true"><span class="body-atom atom-a">A</span><span class="body-atom atom-b">B</span><span id="third-atom" class="body-atom atom-c">C</span><span class="fixed-bond"></span><span id="angle-arc" class="angle-arc"></span></div>
+        <label for="third-atom-control">Third-atom position <output id="third-position">50%</output></label>
+        <input id="third-atom-control" type="range" min="15" max="85" value="50">
+        <dl class="live-readouts"><div><dt>Fixed pair energy</dt><dd id="pair-energy">−0.89</dd></div><div><dt>Bond angle</dt><dd id="angle-value">90°</dd></div><div><dt>Many-body correction</dt><dd id="many-body-value">+0.00</dd></div></dl>
+        <p class="caveat">Dimensionless teaching values: a pair-only formula cannot react to C while an angular or learned many-body model can.</p>
+      </section>
+
+      <section id="mlip-future" aria-labelledby="future-title" data-reveal>
+        <p class="section-kicker">07 / What comes next</p>
+        <h2 id="future-title">Universal coverage needs a confidence-aware loop.</h2>
+        <div class="future-loop" aria-label="Uncertainty-driven active-learning loop">
+          <article><span>01</span><h3>Predict</h3><p>A broad model proposes energies, forces, and stresses.</p></article>
+          <article><span>02</span><h3>Measure uncertainty</h3><p>Detect unfamiliar chemistry or configurations.</p></article>
+          <article><span>03</span><h3>Escalate to DFT</h3><p>Generate a trusted electronic-structure reference where needed.</p></article>
+          <article><span>04</span><h3>Learn and continue</h3><p>Add the hard case and resume the trajectory.</p></article>
+        </div>
+        <div class="future-columns">
+          <article><h3>One broad model, specialized experts</h3><p>Universal atom models combine large diverse datasets with architectures that can route work across specialized representations. See FAIR Chemistry’s <a href="https://fair-chem.github.io/catalysts/projects/uma/">Universal Model for Atoms</a>.</p></article>
+          <article><h3>Beyond mechanics</h3><p>Electronic-structure-aware models aim to predict charge transfer, density of states, band changes, or related observables alongside mechanics—especially valuable for catalysis and conductivity.</p></article>
+        </div>
+        <p class="closing-thesis">The strongest future system may not be one model that is always right. It may be a model that knows when to ask quantum mechanics for help.</p>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
