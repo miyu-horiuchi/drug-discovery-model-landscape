@@ -1,5 +1,7 @@
 # Computational Discovery Field Guide
 
+Live site: <https://miyu-horiuchi.github.io/drug-discovery-model-landscape/>
+
 From the repository root:
 
 ```bash
